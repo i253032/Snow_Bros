@@ -133,11 +133,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Encryption.cpp" />
+    <ClCompile Include="Login.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Signup.cpp" />
     <ClCompile Include="Startup.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Encryption.h" />
+    <ClInclude Include="Login.h" />
     <ClInclude Include="Rounded.h" />
+    <ClInclude Include="Signup.h" />
     <ClInclude Include="Startup.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

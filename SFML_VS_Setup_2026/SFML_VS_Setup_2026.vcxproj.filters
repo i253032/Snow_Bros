@@ -21,12 +21,30 @@
     <ClCompile Include="Startup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Signup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Login.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Encryption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Startup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Rounded.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Signup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Login.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Encryption.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

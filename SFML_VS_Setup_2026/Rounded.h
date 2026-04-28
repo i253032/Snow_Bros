@@ -12,9 +12,6 @@ private:
 public:
 	Rounded()
 	{
-
-		this->size = {0,0
-	};;
 		this->round = 0;;
 		this->points = 0;;
 	}

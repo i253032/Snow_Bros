@@ -98,6 +98,12 @@ void Startup::Pollevent()
 				if (sign.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)
 				{
 					std::cout << "sign Mode Selected" <<std:: endl;
+					Signup sign;
+					while (sign.running())
+					{
+						sign.update();
+						sign.render();
+					}
 				}
 				if (guest.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)
 				{
