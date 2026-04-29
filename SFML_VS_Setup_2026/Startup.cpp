@@ -62,24 +62,21 @@ void Startup::Pollevent()
 			{
 				login.setFillColor(Color(0, 0, 0, 60));
 
-			}
-			if (login.getGlobalBounds().contains(temp_horizontal, temp_vertical) == false)
+			}else if (login.getGlobalBounds().contains(temp_horizontal, temp_vertical) == false)
 			{
 				login.setFillColor(Color(0, 0, 0, 0));
 			}
 			if (sign.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)
 			{
 				sign.setFillColor(Color(0, 0, 0, 60));
-			}
-			if (sign.getGlobalBounds().contains(temp_horizontal, temp_vertical) == false)
+			}else if (sign.getGlobalBounds().contains(temp_horizontal, temp_vertical) == false)
 			{
 				sign.setFillColor(Color(0, 0, 0, 0));
 			}
 			if (guest.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)
 			{
 				guest.setFillColor(Color(0, 0, 0, 60));
-			}
-			if (guest.getGlobalBounds().contains(temp_horizontal, temp_vertical) == false)
+			}else if (guest.getGlobalBounds().contains(temp_horizontal, temp_vertical) == false)
 			{
 				guest.setFillColor(Color(0, 0, 0, 0));
 			}
