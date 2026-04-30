@@ -1,6 +1,7 @@
 #include "Signup.h"
 void Signup::render()
 {
+	username_taken.setPosition({ 345.5,25.1 });
 	window->clear(Color::Blue);
 	window->draw(picture_sprite);
 	window->draw(input);
@@ -40,15 +41,22 @@ void Signup::render()
 	if (success)
 	{
 		time = timer.getElapsedTime().asSeconds();
+		username_taken.setPosition(345.5, 15.1);
+		window->draw(username_taken);
+		username_taken.setPosition(345.5, 35.1);
 		window->draw(username_taken);
 		setter.setCharacterSize(24);
-		setter.setPosition({ 360.0f,37.0f });
+		setter.setPosition({ 360.0f,24.0f });
 		setter.setFillColor(Color::Black);
-		setter.setString("Account created successfully");
+		setter.setString("Account created successfully!");
 		window->draw(setter);
-		if (time >= 5.0)
+		setter.setPosition({ 385.0f,60.0f });
+		setter.setString("Login Your Account");
+		window->draw(setter);
+		if (time >= 3.0)
 		{
-			entered = false;
+			success = false;
+			window->close();
 		}
 	}
 	if (entered)
@@ -218,10 +226,6 @@ void Signup::Pollevent()
 						{
 							success = true;
 							timer.restart();
-							if (timer.getElapsedTime().asSeconds() >= 2)
-							{
-								window->close();
-							}
 						}
 						if (account_created == false)
 						{

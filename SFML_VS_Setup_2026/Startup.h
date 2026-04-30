@@ -2,6 +2,7 @@
 #include"SFML/Graphics.hpp"
 #include"Rounded.h"
 #include"Signup.h"
+#include"Login.h"
 #include<iostream>
 using namespace sf;
 class Startup

@@ -91,6 +91,12 @@ void Startup::Pollevent()
 				if (login.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)
 				{
 					std::cout << "Login Mode Selected" <<std:: endl;
+					Login login;
+					while (login.running())
+					{
+						login.update();
+						login.render();
+					}
 				}
 				if (sign.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)
 				{
