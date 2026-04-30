@@ -75,6 +75,7 @@ Signup::Signup()
 	setter.setCharacterSize(30);
 	setter.setFillColor(Color(32, 94, 201));
 	current = -1;
+	manage = new Manage("../../SFML_VS_Setup_2026/Assets/Data.txt");
 }
 void Signup::update()
 {
