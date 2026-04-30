@@ -7,21 +7,18 @@ string Encryption::converter(long long number)
 	stronger << hex << uppercase << setfill('0') << setw(16) << number;
 	return stronger.str();
 }
-long long int Encryption::input(string & pass)
+string Encryption::input(const string & pass)
 {
 	int max = pass.length();
-	long long int final = 0;
+	long long int final_int = 0;
 	int assign = 0;
 	while (assign < max)
 	{
 		char current = pass[assign];
 		int number = (int)current;
-		final = (final * multiple) + number;
+		final_int = (final_int * multiple) + number;
 		assign++;
 	}
+	string final = converter(final_int);
 	return final;
 }
-//string Encryption::decryption(string & pass)
-//{
-//
-//}

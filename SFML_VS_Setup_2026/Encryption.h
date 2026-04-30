@@ -12,8 +12,7 @@ public:
 		multiple = 31;
 		password = "";
 	}
-	long long int input(string&);
+	string input(const string&);
 	string converter(long long number);
-	string decryption(string& pass);
 };
 
