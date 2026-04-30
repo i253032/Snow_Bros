@@ -37,10 +37,54 @@ void Signup::render()
 	setter.setPosition({ 380.2,580.3 });
 	setter.setString(inputation[2]);
 	window->draw(setter);
+	if (success)
+	{
+		time = timer.getElapsedTime().asSeconds();
+		window->draw(username_taken);
+		setter.setCharacterSize(24);
+		setter.setPosition({ 360.0f,37.0f });
+		setter.setFillColor(Color::Black);
+		setter.setString("Account created successfully");
+		window->draw(setter);
+		if (time >= 5.0)
+		{
+			entered = false;
+		}
+	}
+	if (entered)
+	{
+		time = timer.getElapsedTime().asSeconds();
+		window->draw(username_taken);
+		setter.setCharacterSize(24);
+		setter.setPosition({ 360.0f,37.0f });
+		setter.setFillColor(Color::Black);
+		setter.setString("All fields must fill!");
+		window->draw(setter);
+		if (time >= 5.0)
+		{
+			entered = false;
+		}
+	}
+	if (took)
+	{
+		time = timer.getElapsedTime().asSeconds();
+		window->draw(username_taken);
+		setter.setCharacterSize(24);
+		setter.setPosition({ 360.0f,37.0f });
+		setter.setFillColor(Color::Black);
+		setter.setString("Error! Username already taken");
+		window->draw(setter);
+		if (time >= 5.0)
+		{
+			took = false;
+		}
+	}
 	window->display();
 }
 Signup::Signup()
 {
+	success=took =entered = false;
+	time = 0.0f;
 	window = new RenderWindow(VideoMode(1024, 1024), "Sign up");
 	picture.loadFromFile("../../SFML_VS_Setup_2026/Assets/Login.png");
 	this->picture_sprite.setTexture(picture);
@@ -60,6 +104,11 @@ Signup::Signup()
 	password.setOutlineColor(Color::White);
 	password.setOutlineThickness(0.0f);
 	password.setPosition({ 370.7f,570.8f });
+	username_taken = Rounded({ 365.7f,55.0f }, 15.0f, 10);
+	username_taken.setFillColor(Color::White);
+	username_taken.setOutlineColor(Color::White);
+	username_taken.setOutlineThickness(0.0f);
+	username_taken.setPosition({ 345.5,25.1 });
 	back = Rounded({ 100.7f,60.0f }, 15.0f, 10);
 	back.setFillColor(Color(43, 60, 79));
 	back.setOutlineColor(Color(43, 60, 79));
@@ -157,10 +206,28 @@ void Signup::Pollevent()
 				}
 				if (enter.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)
 				{
-					bool account_created = manage->sign_up(inputation[0], inputation[1], inputation[2]);
-					if (account_created)
+					if ((inputation[0].empty() == true || inputation[1].empty() == true) || inputation[2].empty() == true)
 					{
-						window->close();
+							entered = true;
+							timer.restart();
+					}
+					else
+					{
+						bool account_created = manage->sign_up(inputation[0], inputation[1], inputation[2]);
+						if (account_created == true)
+						{
+							success = true;
+							timer.restart();
+							if (timer.getElapsedTime().asSeconds() >= 2)
+							{
+								window->close();
+							}
+						}
+						if (account_created == false)
+						{
+							took = true;
+							timer.restart();
+						}
 					}
 				}
 				if (back.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)

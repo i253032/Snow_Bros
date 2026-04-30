@@ -13,7 +13,10 @@ private:
 	Texture picture;
 	Sprite picture_sprite;
 	Event event;
-	Rounded input,username,password,enter ,back;
+	Clock timer;
+	float time;
+	Rounded input,username,password,enter ,back,username_taken;
+	bool took,entered,success;
 	Font fonts;
 	Text setter;
 	int current;
