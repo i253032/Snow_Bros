@@ -1,11 +1,13 @@
 #include <SFML/Graphics.hpp>
-#include"Startup.h"
-int main() {
-    Startup game;
-    while (game.running())
+#include "Menu.h"
+
+int main()
+{
+    Menu menu;
+    while (menu.running())
     {
-        game.update();
-        game.render();
+        menu.update();
+        menu.render();
     }
     return 0;
 }

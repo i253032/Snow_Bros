@@ -138,6 +138,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Manage.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Progress.cpp" />
+    <ClCompile Include="Saver.cpp" />
     <ClCompile Include="Signup.cpp" />
     <ClCompile Include="Startup.cpp" />
   </ItemGroup>
@@ -146,7 +148,9 @@
     <ClInclude Include="Login.h" />
     <ClInclude Include="Manage.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Progress.h" />
     <ClInclude Include="Rounded.h" />
+    <ClInclude Include="Saver.h" />
     <ClInclude Include="Signup.h" />
     <ClInclude Include="Startup.h" />
   </ItemGroup>

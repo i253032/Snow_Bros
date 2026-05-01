@@ -8,15 +8,37 @@ void Startup::render()
 	window->draw(guest);
 	window->display();
 }
-void Startup::both_logined_set(const bool yes=false)
+#include "Startup.h"
+
+// --- Static member definitions ---
+bool   Startup::both_logined = false;
+bool   Startup::guest_mode = false;
+string Startup::player_names[2];
+
+void Startup::both_logined_set(bool yes)
 {
 	both_logined = yes;
 }
- bool Startup::both_logined_get()const
+bool Startup::both_logined_get()
 {
-	 return both_logined;
+	return both_logined;
 }
- bool Startup::both_logined = false;
+bool Startup::guest_get()
+{
+	return guest_mode;
+}
+string Startup::name_get(int index)
+{
+	if (index == 0)
+	{
+		return player_names[0];
+	}
+	if (index == 1)
+	{
+		return player_names[1];
+	}
+	return "";
+}
 Startup::Startup()
 {
 	
@@ -100,10 +122,12 @@ void Startup::Pollevent()
 			{
 				int temp_horizontal = event.mouseButton.x;
 				int temp_vertical = event.mouseButton.y;
+
+				// ---- LOGIN ----
 				if (login.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)
 				{
 					cout << "Login Mode Selected" << endl;
-					Logined=new Login();
+					Logined = new Login();
 					while (Logined->running())
 					{
 						Logined->update();
@@ -111,35 +135,50 @@ void Startup::Pollevent()
 						if (Logined->getting())
 						{
 							both_logined = true;
-							cout << "Both Logined" << endl;
-							name[0] = Logined->name_getting(1);
-							name[1] = Logined->name_getting(2);
-							cout << "First Player : " << name[0] << endl;
-							cout << "Second Player : " << name[1] << endl;
+							guest_mode = false;
+							player_names[0] = Logined->name_getting(1);
+							player_names[1] = Logined->name_getting(2);
+							cout << "First Player : " << player_names[0] << endl;
+							cout << "Second Player : " << player_names[1] << endl;
 							delete Logined;
 							Logined = nullptr;
+							window->close();           // ← auto-close Startup
 							break;
 						}
 					}
+					if (Logined != nullptr)
+					{
+						delete Logined;
+						Logined = nullptr;
+					}
 				}
+
+				// ---- SIGN UP ----
 				if (sign.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)
 				{
-					cout << "sign Mode Selected" <<endl;
-					Signuped=new Signup();
+					cout << "Sign Mode Selected" << endl;
+					Signuped = new Signup();
 					while (Signuped->running())
 					{
 						Signuped->update();
 						Signuped->render();
 					}
 					delete Signuped;
-					Signuped=nullptr;
+					Signuped = nullptr;
+					// Sign-up done → user still needs to login → keep Startup open
 				}
+
+				// ---- GUEST ----
 				if (guest.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)
 				{
-					cout << "Guest Mode Selected" <<endl;
+					cout << "Guest Mode Selected" << endl;
+					both_logined = true;
+					guest_mode = true;
+					player_names[0] = "Player 01";
+					player_names[1] = "Player 02";
+					window->close();                    // ← auto-close Startup
 				}
 				break;
-
 			}
 		}
 
