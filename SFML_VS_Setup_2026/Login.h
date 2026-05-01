@@ -23,6 +23,8 @@ private:
 public:
 	void Pollevent();
 	Login();
+	bool getting()const;
+	string name_getting(int);
 	const bool running()const;
 	void update();
 	void render();

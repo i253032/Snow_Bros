@@ -8,8 +8,20 @@ void Startup::render()
 	window->draw(guest);
 	window->display();
 }
+void Startup::both_logined_set(const bool yes=false)
+{
+	both_logined = yes;
+}
+ bool Startup::both_logined_get()const
+{
+	 return both_logined;
+}
+ bool Startup::both_logined = false;
 Startup::Startup()
 {
+	
+	Logined = nullptr;
+	Signuped = nullptr;
 	window = new RenderWindow(VideoMode(1365, 768), "Snow Bros");
 	picture.loadFromFile("../../SFML_VS_Setup_2026/Assets/Start.png");
 	this->picture_sprite.setTexture(picture);
@@ -90,27 +102,41 @@ void Startup::Pollevent()
 				int temp_vertical = event.mouseButton.y;
 				if (login.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)
 				{
-					std::cout << "Login Mode Selected" <<std:: endl;
-					Login login;
-					while (login.running())
+					cout << "Login Mode Selected" << endl;
+					Logined=new Login();
+					while (Logined->running())
 					{
-						login.update();
-						login.render();
+						Logined->update();
+						Logined->render();
+						if (Logined->getting())
+						{
+							both_logined = true;
+							cout << "Both Logined" << endl;
+							name[0] = Logined->name_getting(1);
+							name[1] = Logined->name_getting(2);
+							cout << "First Player : " << name[0] << endl;
+							cout << "Second Player : " << name[1] << endl;
+							delete Logined;
+							Logined = nullptr;
+							break;
+						}
 					}
 				}
 				if (sign.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)
 				{
-					std::cout << "sign Mode Selected" <<std:: endl;
-					Signup sign;
-					while (sign.running())
+					cout << "sign Mode Selected" <<endl;
+					Signuped=new Signup();
+					while (Signuped->running())
 					{
-						sign.update();
-						sign.render();
+						Signuped->update();
+						Signuped->render();
 					}
+					delete Signuped;
+					Signuped=nullptr;
 				}
 				if (guest.getGlobalBounds().contains(temp_horizontal, temp_vertical) == true)
 				{
-					std::cout << "Guest Mode Selected" <<std:: endl;
+					cout << "Guest Mode Selected" <<endl;
 				}
 				break;
 

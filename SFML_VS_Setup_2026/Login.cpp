@@ -238,6 +238,18 @@ void Login::render()
 	}
 	window->display();
 }
+string Login::name_getting(int a)
+{
+	if (a == 2)
+		a = 3;
+	if (a == 1)
+		a = 0;
+	return inputation[a];
+}
+bool Login::getting()const
+{
+	return login_1 && login_2;
+}
 Login::Login()
 {
 	success = took = entered =success_2 = took_2 = entered_2 = login_1=login_2=failure=failure_2=false;
